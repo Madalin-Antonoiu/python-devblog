@@ -14,6 +14,7 @@ class PostDetailView(DetailView): #2. Then import this view into urls
 class AddPostView(CreateView):
     model = Post
     template_name = 'Add_Post.html'
-    fields = "__all__"
+    fields = "__all__" # - Display all models.py/ Post entries
+    #fields = ("title", "body") # - Display specific ones only
 
 

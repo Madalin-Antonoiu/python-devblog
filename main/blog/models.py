@@ -28,7 +28,6 @@ class Course(models.Model):
         return self.title
 
 class Post(models.Model):
-    
     author = models.ForeignKey(User, default="admin", on_delete = models.CASCADE) # foreign key comes from the User we created earlier
     course = models.ForeignKey(Course, null=True, on_delete = models.CASCADE)
     title = models.CharField(max_length=255)
