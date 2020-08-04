@@ -1,11 +1,31 @@
-<h1>Fang-tastic!</h1>
 
-<ul>
-    <!-- Embeded Django syntax-->
-    {% for post in object_list %}
-        <li>
-            <a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a> - {{ post.author }}<br>
-            {{ post.body }}
-        </li>
-    {% endfor %}
-</ul>
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Fang-tastic!</h1>
+
+    <div class="uk-child-width-1-4@m uk-grid-small uk-grid-match" uk-grid>
+
+        
+        {% for post in object_list %}
+       
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+                    <div class="uk-card-badge uk-label">Badge</div>
+                   
+                        <h3 class="uk-card-title">
+                            <a href="{% url 'post-detail' post.pk %}" class="uk-link-heading">{{ post.title}}</a>
+                        </h3>
+                        <p> {{ post.body }}</p>
+                        <p>{{ post.author }}<p>
+
+               
+            </div>
+       
+        </div>
+       
+        {% endfor %}
+    </div>
+
+{% endblock %}
