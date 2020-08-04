@@ -16,5 +16,5 @@ class CategoryView(DetailView): #2. Then import this view into urls
     template_name = "category_detail.html"
 
 class CourseView(DetailView): #2. Then import this view into urls
-    model = Course
+    model = Post
     template_name = "course_detail.html"
