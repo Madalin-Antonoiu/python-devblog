@@ -21,7 +21,7 @@
                                 <li class="uk-active" uk-filter-control><a href="#">All</a></li>
 
                                 {% for post in object_list %}
-                                    <li uk-filter-control="[data-category='{{ post.category }}']"><a href="#">{{ post.category }}</a></li> <!-- It only shows the categories with posts in them -->
+                                    <li uk-filter-control="[data-category={{ post.course.category }}]"><a href="#">{{ post.course.category }}</a></li> <!-- It only shows the categories with posts in them -->
                                 {% endfor %}
                             </ul>
 
@@ -30,9 +30,9 @@
 
                                 {% for post in object_list %}
                             
-                                <li data-category="{{ post.category }}"> <!-- The post.category dictates sorting-->
+                                <li data-category="{{ post.course.category }}"> <!-- The post.course.category dictates sorting-->
                                     <div class="uk-card uk-card-default uk-card-body uk-card-hover">
-                                            <span class="uk-card-badge uk-label ">{{ post.category }}</span>
+                                            <span class="uk-card-badge uk-label ">{{ post.course.category }}</span>
                                         
                                             <h3 class="uk-card-title uk-margin-top">
                                                 <a href="{% url 'course-detail' post.course %}" class="uk-link-heading">{{ post.course}}</a>
