@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post, Category # this is our models.py file
+from .models import Post # this is our models.py file
 from django.views.generic import ListView, DetailView 
 
 
@@ -11,6 +11,6 @@ class PostDetailView(DetailView): #2. Then import this view into urls
     model = Post
     template_name = "post_detail.html"
 
-class CourseView(ListView): #2. Then import this view into urls
-    model = Category
-    template_name = "course_detail.html"
+# class CourseView(ListView): #2. Then import this view into urls
+#     model = Category
+#     template_name = "course_detail.html"
