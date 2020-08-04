@@ -10,7 +10,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'uikit.min.css' %}" />
 
 
-    <title>Devblog - Home</title>
+    <title>
+        {% block title%}
+          Devblog - Home
+        {% endblock %}
+    </title>
 </head>
 <body>
 
