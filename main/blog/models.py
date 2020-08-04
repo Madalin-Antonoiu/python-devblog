@@ -5,6 +5,8 @@ from django.contrib.auth.models import User # Connect to the admin we declared e
 class Post(models.Model): #1. Then import it into views
     author = models.ForeignKey(User, default="admin", on_delete = models.CASCADE) # foreign key comes from the User we created earlier
     title = models.CharField(max_length=255)
+    category = models.CharField(max_length=255, default="Uncategorized")
+    subcategory = models.CharField(max_length=255, default="")
     body = models.TextField()
 
     def __str__(self):
