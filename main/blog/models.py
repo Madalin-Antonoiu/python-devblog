@@ -1,8 +1,8 @@
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User # Connect to the admin we declared earlier  
-
-# Models > Views > Urls > Admin- Make sure you declare them in all places
+from django.urls import reverse
+# Models = Template > Views > Urls > Admin - Make sure you declare them in all places
 
 class Category(models.Model):
     title = models.CharField(max_length=255, unique=True)
@@ -16,8 +16,8 @@ class Category(models.Model):
         return self.title
 
 class Course(models.Model):
-    title = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, on_delete = models.CASCADE, default="Undefined") # Whenever a new Course is created, you must pick a category it relates to :)
+    title = models.CharField(max_length=255, unique=True)
+    category = models.ForeignKey(Category, on_delete = models.CASCADE, default="Undefined", unique=True) # Whenever a new Course is created, you must pick a category it relates to :)
 
     class Meta:
         verbose_name = "Course"
@@ -42,4 +42,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title 
+
+    def get_absolute_url(self):
+        return reverse("post-detail", args=(str(self.id)) )
 

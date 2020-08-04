@@ -19,7 +19,6 @@
                             <!-- A -->
                             <ul class="uk-subnav uk-subnav-pill">
                                 <li class="uk-active" uk-filter-control><a href="#">All</a></li>
-
                                 {% for post in object_list %}
                                     <li uk-filter-control="[data-category={{ post.course.category }}]"><a href="#">{{ post.course.category }}</a></li> <!-- It only shows the categories with posts in them -->
                                 {% endfor %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+ <h1>Add Post</h1>
+
+ <form method="POST">
+    {% csrf_token %} <!-- CSRF is for data safety-->
+    {{ form.as_p }}
+    <button class="uk-button uk-button-default uk-button-small">Post</button>
+
+ </form>
+
+
+{% endblock %}

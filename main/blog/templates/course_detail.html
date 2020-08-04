@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title%}
-    Devblog - {{ post.course.title }}
+    Devblog - {{ post.course }}
 {% endblock %}
 
 {% block content %}
- <h1>Hello niggas</h1>
+    {% for post in category.post_set.all %}
+        post: {{ post.title }}
+    {% endfor %}
 {% endblock %}
