@@ -19,10 +19,10 @@
                             <!-- A -->
                             <ul class="uk-subnav uk-subnav-pill">
                                 <li class="uk-active" uk-filter-control><a href="#">All</a></li>
-                                <li uk-filter-control="[data-category='JavaScript']"><a href="#">JavaScript</a></li> <!-- Remove hardcoding-->
-                                <li uk-filter-control="[data-category='Python']"><a href="#">Python</a></li>
-                                <li uk-filter-control="[data-category='C#']"><a href="#">C#</a></li>
-                                <li uk-filter-control="[data-category='W10']"><a href="#">Windows 10</a></li>
+
+                                {% for post in object_list %}
+                                    <li uk-filter-control="[data-category='{{ post.category }}']"><a href="#">{{ post.category }}</a></li> <!-- It only shows the categories with posts in them -->
+                                {% endfor %}
                             </ul>
 
                             <!-- B Here my posts get injected-->
@@ -35,10 +35,10 @@
                                             <span class="uk-card-badge uk-label ">{{ post.category }}</span>
                                         
                                             <h3 class="uk-card-title uk-margin-top">
-                                                <a href="{% url 'subcategory-detail' post.subcategory %}" class="uk-link-heading">{{ post.subcategory}}</a>
+                                                <a href="{% url 'course-detail' post.course %}" class="uk-link-heading">{{ post.course}}</a>
                                             </h3>
 
-                                            <!-- Add Subcategory Highlight-->
+                                            <!-- Add course Highlight-->
                                             <!-- <div> 
                                                 <p> {{ post.body }}</p> 
                                             </div> -->

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Devblog - {{ post.course }}
+{% endblock %}
+
+{% block content %}
+    {% for post in category.post_set.all %}
+        post: {{ post.title }}
+    {% endfor %}
+{% endblock %}
