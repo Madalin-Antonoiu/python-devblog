@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views #Import Views...
+from .views import HomeView, PostDetailView
 
 urlpatterns = [
-    path('', views.home, name="home") # to use here as declared in views.py/ home
+    path('', HomeView.as_view(), name="home"), # 3. Then imported here
+    path('<int:pk>', PostDetailView.as_view(), name="post-detail") # path for each post detail on click
 ]

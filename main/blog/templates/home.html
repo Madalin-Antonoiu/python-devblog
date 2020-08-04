@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog App</title>
-</head>
-<body>
-    <h1>Fang-tastic!</h1>
-</body>
-</html>
+<h1>Fang-tastic!</h1>
+
+<ul>
+    <!-- Embeded Django syntax-->
+    {% for post in object_list %}
+        <li>
+            <a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a> - {{ post.author }}<br>
+            {{ post.body }}
+        </li>
+    {% endfor %}
+</ul>
