@@ -35,12 +35,13 @@
                                             <span class="uk-card-badge uk-label ">{{ post.category }}</span>
                                         
                                             <h3 class="uk-card-title uk-margin-top">
-                                                <a href="{% url 'post-detail' post.pk %}" class="uk-link-heading">{{ post.subcategory}}</a>
+                                                <a href="{% url 'subcategory-detail' post.subcategory %}" class="uk-link-heading">{{ post.subcategory}}</a>
                                             </h3>
-                                            
-                                            <div> 
+
+                                            <!-- Add Subcategory Highlight-->
+                                            <!-- <div> 
                                                 <p> {{ post.body }}</p> 
-                                            </div>
+                                            </div> -->
                                         
                                     </div>
                             

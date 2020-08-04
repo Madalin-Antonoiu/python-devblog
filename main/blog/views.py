@@ -10,3 +10,7 @@ class HomeView(ListView): #2. Then import this view into urls
 class PostDetailView(DetailView): #2. Then import this view into urls
     model = Post
     template_name = "post_detail.html"
+
+class SubcategoryView(DetailView): #2. Then import this view into urls
+    model = Post
+    template_name = "subcategory_detail.html"
