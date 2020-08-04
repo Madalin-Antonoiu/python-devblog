@@ -10,17 +10,29 @@
     <link rel="stylesheet" type="text/css" href="{% static 'uikit.min.css' %}" />
 
 
-    <title>Document</title>
+    <title>Devblog - Home</title>
 </head>
 <body>
-    {% block content %}
 
-    {% endblock %}
+    <!-- a. WRAPPER as tall as the viewport-->
+    <div class="uk-container uk-height-viewport uk-background-norepeat ">
 
+        <!-- b. NAVBAR-->
+        {% include 'navbar.html' %}
+
+        <!-- c. MAIN CONTENT container that offsets the nevbar-->
+        <div class="uk-container" uk-height-viewport="offset-top: true"> 
+                    
+            {% block content %}
+            {% endblock %}
+           
+        </div>
+
+    </div>
     
+
     <!-- UIkit JS -->
     <script src="{% static 'uikit-icons.min.js' %}"></script>
     <script src="{% static 'uikit.min.js' %}"></script>
-
 </body>
 </html>

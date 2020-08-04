@@ -2,30 +2,46 @@
 
 {% block content %}
 
-<article class="uk-article uk-container">
 
 
-        <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ post.title }}</a></h1>
+<div uk-grid uk-height-viewport="offset-top: true">
 
-        <p class="uk-article-meta">Written by <a href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a> on 12 April 2012. Posted in <a href="{% url 'home' %}">Blog</a></p>
+    <div class="uk-width-expand@m">
+        <article class="uk-article uk-card uk-card-default uk-card-body">
 
-        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
 
-        <p>{{post.body}}</p>
-
-        <div class="uk-grid-small uk-child-width-auto" uk-grid>
-            <div>
-                <a class="uk-button uk-button-text" href="#">Read more</a>
+            <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ post.title }}</a></h1>
+    
+            <p class="uk-article-meta">Written by <a href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a> on 12 April 2012. Posted in <a href="{% url 'home' %}">Blog</a></p>
+    
+            <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+    
+            <p>{{post.body}}</p>
+    
+            <div class="uk-grid-small uk-child-width-auto" uk-grid>
+                <div>
+                    <a class="uk-button uk-button-text" href="#">Read more</a>
+                </div>
+                <div>
+                    <a class="uk-button uk-button-text" href="#">5 Comments</a>
+                </div>
+                <div>
+                    <a class="uk-button uk-button-text" href="{% url 'home' %}">Back</a>
+                </div>
+                
             </div>
-            <div>
-                <a class="uk-button uk-button-text" href="#">5 Comments</a>
-            </div>
-            <div>
-                <a class="uk-button uk-button-text" href="{% url 'home' %}">Back</a>
-            </div>
-            
-        </div>
+    
+    </article>
+    </div>
 
-</article>
+    <div class="uk-width-auto@m">
+        <div class="uk-card uk-card-default uk-card-body">Scrollspy</div>
+    </div>
+
+
+
+</div>
+
+
 
 {% endblock %}
