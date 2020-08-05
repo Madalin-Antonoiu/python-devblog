@@ -45,7 +45,21 @@
                                            <small> <span class="uk-position-small uk-position-top-right uk-margin-xlarge-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span></small>
                                            <small> <span class="uk-position-small uk-position-top-right "><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span></small>
                                            <small> <span class="uk-position-small uk-position-top-right uk-margin-large-right"><a href="#">Unpublish</a></span></small>
-                                           <small> <span class="uk-position-small uk-position-bottom-left"><a href="#">Last Update: {{post.updated_at}}</a></span></small>
+                                           
+                                          
+
+                                           {% load tz %}
+                                           {% load static %}
+                                            <small>
+                                                
+                                                <span class="uk-position-small uk-position-bottom-left uk-label ">
+                                                    <img width="" height="" alt="" uk-img="data-src: {% static 'svg/patch-exclamation-fll.svg' %}" uk-svg>
+                                                    Updated: {{post.updated_at | timezone:"Europe/Bucharest" }}
+                                                </span>
+                                            </small>
+                                            
+                                           
+                                           
                                     </div>
                             
                                 </li>
