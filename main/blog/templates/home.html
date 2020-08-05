@@ -13,6 +13,7 @@
 
                         <!-- <div class="uk-placeholder"></div> -->
 
+                        
                         <!-- Posts filter META CONTAINER-->
                         <div uk-filter="target: .js-filter">
 
@@ -31,28 +32,31 @@
                             
                                 <li data-category="{{ post.course.category }}"> <!-- The post.course.category dictates sorting-->
                                     <div class="uk-card uk-card-default uk-card-body uk-card-hover">
-                                            <span class="uk-card-badge uk-label ">{{ post.course.category }}</span>
+                                            <span class="uk-card-badge uk-label uk-background-secondary uk-margin-small-top ">{{ post.course.category }}</span>
                                         
                                             <h3 class="uk-card-title uk-margin-top">
                                                 <a href="{% url 'post-detail' post.slug post.pk %}" class="uk-link-heading">{{ post.title}}</a>
                                             </h3>
 
+
+                                            <small> 
+                                                <span class="uk-position-small uk-position-top-right  uk-margin-xlarge-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span>
+                                                <span class="uk-position-small uk-position-top-right "><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span>
+                                                <span class="uk-position-small uk-position-top-right  uk-margin-large-right uk-margin-bottom"><a href="#">Unpublish</a></span>
+                                            </small>
+
+
                                             <!-- Add course Highlight-->
                                             <div> 
                                                 <p> {{ post.body|slice:":100" }}</p> 
                                             </div>
-
-                                           <small> <span class="uk-position-small uk-position-top-right uk-margin-xlarge-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span></small>
-                                           <small> <span class="uk-position-small uk-position-top-right "><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span></small>
-                                           <small> <span class="uk-position-small uk-position-top-right uk-margin-large-right"><a href="#">Unpublish</a></span></small>
                                            
-                                          
 
                                            {% load tz %}
                                            {% load static %}
                                             <small>
                                                 
-                                                <span class="uk-position-small uk-position-bottom-left uk-label ">
+                                                <span class="uk-position-small uk-position-bottom-left ">
                                                     <img width="" height="" alt="" uk-img="data-src: {% static 'svg/patch-exclamation-fll.svg' %}" uk-svg>
                                                     Updated: {{post.updated_at | timezone:"Europe/Bucharest" }}
                                                 </span>
