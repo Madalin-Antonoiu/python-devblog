@@ -7,7 +7,8 @@ from django.urls import reverse_lazy
 class HomeView(ListView): #2. Then import this view into urls
     model = Post
     template_name = "home.html"
-    ordering = ['-id']
+    #ordering = ['-id'] - "-" means reverse order
+    ordering = ['-updated_at']
 
 class PostDetailView(DetailView): #2. Then import this view into urls
     model = Post
