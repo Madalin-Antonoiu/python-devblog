@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Post, Category, Course # this is our models.py file
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .forms import PostForm
 
 class HomeView(ListView): #2. Then import this view into urls
@@ -19,3 +19,8 @@ class AddPostView(CreateView):
     #fields = ("title", "body") # - Display specific ones only
 
 
+class UpdatePostView(UpdateView):
+    model = Post
+    form_class = PostForm #You can always mirror PostForm and create an Edit Form class with certain fields only
+    template_name = "Update_Post.html"
+    #fields = ['title', 'course', 'slug', 'body']

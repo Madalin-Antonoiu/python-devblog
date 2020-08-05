@@ -38,9 +38,11 @@
                                             </h3>
 
                                             <!-- Add course Highlight-->
-                                            <!-- <div> 
-                                                <p> {{ post.body }}</p> 
-                                            </div> -->
+                                            <div> 
+                                                <p> {{ post.body|slice:":100" }}</p> 
+                                            </div>
+
+                                           <small> <span class="uk-position-small uk-position-bottom-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span></small>
                                         
                                     </div>
                             

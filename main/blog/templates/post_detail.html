@@ -16,7 +16,11 @@
 
             <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ post.title }}</a></h1>
     
-            <p class="uk-article-meta">Written by <a href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a> on 12 April 2012. Posted in <a href="{% url 'home' %}">Blog</a></p>
+            <p class="uk-article-meta">Written by <a href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a> on 12 April 2012. Posted in <a href="{% url 'home' %}">Blog</a>
+                <small> <span class="uk-position-small"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span></small>
+            </p>
+            
+
     
             <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
     
