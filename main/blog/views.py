@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Post, Category # this is our models.py file
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView,  UpdateView, DeleteView
 from .forms import PostForm
 from django.urls import reverse_lazy
 
@@ -10,16 +10,16 @@ class HomeView(ListView): #2. Then import this view into urls
     #ordering = ['-id'] - "-" means reverse order
     ordering = ['-updated_at']
 
-class PostDetailView(DetailView): #2. Then import this view into urls
-    model = Post
-    template_name = "post_detail.html"
-
 class CreatePostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'Create_Post.html'
     # fields = "__all__" # - Display all models.py/ Post entries ( No longer needed with form_class)
     #fields = ("title", "body") # - Display specific ones only
+
+class ReadPostView(DetailView): #2. Then import this view into urls
+    model = Post
+    template_name = "Read_Post.html"
 
 class UpdatePostView(UpdateView):
     model = Post
