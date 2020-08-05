@@ -13,21 +13,21 @@ class HomeView(ListView): #2. Then import this view into urls
 class CreatePostView(CreateView):
     model = Post
     form_class = PostForm
-    template_name = 'Create_Post.html'
+    template_name = 'CRUD/Create_Post.html'
     # fields = "__all__" # - Display all models.py/ Post entries ( No longer needed with form_class)
     #fields = ("title", "body") # - Display specific ones only
 
 class ReadPostView(DetailView): #2. Then import this view into urls
     model = Post
-    template_name = "Read_Post.html"
+    template_name = "CRUD/Read_Post.html"
 
 class UpdatePostView(UpdateView):
     model = Post
     form_class = PostForm #You can always mirror PostForm and create an Edit Form class with certain fields only
-    template_name = "Update_Post.html"
+    template_name = "CRUD/Update_Post.html"
     #fields = ['title', 'course', 'slug', 'body']
 
 class DeletePostView(DeleteView):
     model = Post
-    template_name = "Delete_Post.html"
+    template_name = "CRUD/Delete_Post.html"
     success_url = reverse_lazy('home')
