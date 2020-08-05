@@ -17,7 +17,10 @@
             <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ post.title }}</a></h1>
     
             <p class="uk-article-meta">Written by <a href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a> on 12 April 2012. Posted in <a href="{% url 'home' %}">Blog</a>
-                <small> <span class="uk-position-small"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span></small>
+                <small> 
+                    <span class="uk-position-small"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span>
+                    <span class="uk-position-small"><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span>
+                </small>
             </p>
             
 

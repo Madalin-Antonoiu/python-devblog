@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title%} Devblog - Delete Blog Post{% endblock %}
+
+
+{% block content %}
+
+    <h1>Delete Post</h1>
+    <h3>Delete: {{ post.title }}</h3>
+
+
+    <fieldset class="uk-fieldset">
+    
+        <form method="POST">
+            {% csrf_token %} <!-- CSRF is for data safety-->
+            <strong>Are you sure?</strong><br>
+            <button class="uk-button uk-button-default uk-button-small">Delete Post</button>
+        </form>
+
+    </fieldset>
+
+
+
+{% endblock %}

@@ -42,8 +42,8 @@
                                                 <p> {{ post.body|slice:":100" }}</p> 
                                             </div>
 
-                                           <small> <span class="uk-position-small uk-position-bottom-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span></small>
-                                        
+                                           <small> <span class="uk-position-small uk-position-bottom-right uk-margin-large-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span></small>
+                                           <small> <span class="uk-position-small uk-position-bottom-right "><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span></small>
                                     </div>
                             
                                 </li>
