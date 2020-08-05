@@ -1,80 +1,75 @@
 
 {% extends 'base.html' %}
-
         
     {% block content %}
         <div class="uk-placeholder"></div>
         <div uk-grid> <!--The Two columns master grid-->
             <div class="uk-width-expand@m">
                 <div class="uk-card uk-card-default uk-card-body">
+                    <!-- Posts filter META CONTAINER-->
+                    <div uk-filter="target: .js-filter">
+
+                        <!-- A -->
+                        <ul class="uk-subnav uk-subnav-pill">
+                            <li class="uk-active" uk-filter-control><a href="#">All</a></li>
+                            {% for post in object_list %}
+                                <li uk-filter-control="[data-category={{ post.course.category }}]"><a href="#">{{ post.course.category }}</a></li> <!-- It only shows the categories with posts in them -->
+                            {% endfor %}
+                        </ul>
+
+                        <!-- B Here my posts get injected-->
+                        <ul class="js-filter uk-child-width-1-3@m uk-grid-small uk-grid-match " uk-grid>
+
+                            {% for post in object_list %}
                         
-                        <!-- Posts filter META CONTAINER-->
-                        <div uk-filter="target: .js-filter">
+                            <li data-category="{{ post.course.category }}"> <!-- The post.course.category dictates sorting-->
+                                <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+                                        <span class="uk-card-badge uk-label uk-background-secondary">{{ post.course.category }}</span>
+                                    
+                                        <h3 class="uk-card-title uk-margin-top">
+                                            <a href="{% url 'post-detail' post.slug post.pk %}" class="uk-link-heading">{{ post.title}}</a>
+                                        </h3>
 
-                            <!-- A -->
-                            <ul class="uk-subnav uk-subnav-pill">
-                                <li class="uk-active" uk-filter-control><a href="#">All</a></li>
-                                {% for post in object_list %}
-                                    <li uk-filter-control="[data-category={{ post.course.category }}]"><a href="#">{{ post.course.category }}</a></li> <!-- It only shows the categories with posts in them -->
-                                {% endfor %}
-                            </ul>
-
-                            <!-- B Here my posts get injected-->
-                            <ul class="js-filter uk-child-width-1-3@m uk-grid-small uk-grid-match " uk-grid>
-
-                                {% for post in object_list %}
-                            
-                                <li data-category="{{ post.course.category }}"> <!-- The post.course.category dictates sorting-->
-                                    <div class="uk-card uk-card-default uk-card-body uk-card-hover">
-                                            <span class="uk-card-badge uk-label uk-background-secondary">{{ post.course.category }}</span>
+                                        <!-- Add course Highlight-->
                                         
-                                            <h3 class="uk-card-title uk-margin-top">
-                                                <a href="{% url 'post-detail' post.slug post.pk %}" class="uk-link-heading">{{ post.title}}</a>
-                                            </h3>
-
-                                            <!-- Add course Highlight-->
-                                            
-                                                <p class="uk-margin-medium-bottom"> {{ post.body|slice:":100" }}</p> 
-                                            
-                                           
-
-                                           {% load tz %}
-                                           {% load static %}
+                                            <p class="uk-margin-medium-bottom"> {{ post.body|slice:":100" }}</p> 
                                         
-                                               
-                                                    <span class="uk-position-small uk-text-small uk-position-bottom-left uk-margin-medium-bottom">
-                                                            <img width="" height="" alt="" uk-img="data-src: {% static 'svg/patch-exclamation-fll.svg' %}" uk-svg>
-                                                            Updated: {{post.updated_at | timezone:"Europe/Bucharest" }}
-                                                    </span>
-                                               
-                                         
-                                                <small> 
-                                                    <span class="uk-position-small uk-position-bottom-right  uk-margin-large-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span>
-                                                    <span class="uk-position-small uk-position-bottom-right uk-margin-medium-left "><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span>
-                                                </small>
-                                           
                                         
+
+                                        {% load tz %}
+                                        {% load static %}
+                                    
                                             
-                                           
-                                           
-                                    </div>
-                            
-                                </li>
-                            
-                                {% endfor %}
+                                                <span class="uk-position-small uk-text-small uk-position-bottom-left uk-margin-medium-bottom">
+                                                        <img width="" height="" alt="" uk-img="data-src: {% static 'svg/patch-exclamation-fll.svg' %}" uk-svg>
+                                                        Updated: {{post.updated_at | timezone:"Europe/Bucharest" }}
+                                                </span>
+                                            
+                                        
+                                            <small> 
+                                                <span class="uk-position-small uk-position-bottom-right  uk-margin-large-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span>
+                                                <span class="uk-position-small uk-position-bottom-right uk-margin-medium-left "><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span>
+                                            </small>
+                                        
+                                    
+                                        
+                                        
+                                        
+                                </div>
+                        
+                            </li>
+                        
+                            {% endfor %}
 
-                                <div class="uk-placeholder"></div>
+                            <div class="uk-placeholder"></div>
 
-                            </ul>
-                        </div>
-
-
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div class="uk-width-auto@m ">
                 <!-- <div class="uk-card uk-card-default uk-card-body">
-                    
                 </div> -->
                 <div class="uk-card uk-card-default uk-card-body">
                     <div class="uk-placeholder "></div>
@@ -85,9 +80,6 @@
                 </div> 
                
             </div>
-        
-
-
         </div>
     {% endblock %}
 
