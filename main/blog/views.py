@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post, Category # this is our models.py file
+from .models import Post, Category # this is from our models.py file
 from django.views.generic import ListView, CreateView, DetailView,  UpdateView, DeleteView
 from .forms import PostForm
 from django.urls import reverse_lazy
@@ -31,3 +31,9 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = "CRUD/Delete_Post.html"
     success_url = reverse_lazy('home')
+
+class CreateCategoryView(CreateView):
+    model = Category
+    fields = "__all__"
+    template_name = 'Category/Create_Category.html'
+

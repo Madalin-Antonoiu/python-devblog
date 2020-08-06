@@ -13,8 +13,9 @@
                         <!-- A -->
                         <ul class="uk-subnav uk-subnav-pill">
                             <li class="uk-active" uk-filter-control><a href="#">All</a></li>
+
                             {% for post in object_list %}
-                                <li uk-filter-control="[data-category={{ post.pk }}]"><a href="#">{{ post.pk }}</a></li> <!-- It only shows the categories with posts in them -->
+                                <li uk-filter-control="[data-category={{ post.category }}]"><a href="#">{{ post.category }}</a></li> <!-- It only shows the categories with posts in them -->
                             {% endfor %}
                         </ul>
 
@@ -23,9 +24,9 @@
 
                             {% for post in object_list %}
                         
-                            <li data-category="{{ post.pk}}"> <!-- The category dictates sorting-->
+                            <li data-category="{{ post.category }}"> <!-- The category dictates sorting-->
                                 <div class="uk-card uk-card-default uk-card-body uk-card-hover">
-                                        <span class="uk-card-badge uk-label uk-background-secondary">{{ post.pk}}</span>
+                                        <span class="uk-card-badge uk-label uk-background-secondary">{{ post.category}}</span> <!--Badge-->
                                     
                                         <h3 class="uk-card-title uk-margin-top">
                                             <a href="{% url 'read-post' post.slug post.pk %}" class="uk-link-heading">{{ post.title}}</a>

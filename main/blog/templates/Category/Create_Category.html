@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+    {% block title%} Devblog - Create Category {% endblock %}
+
+{% block content %}
+
+
+    {% if user.is_authenticated %}
+
+        {% if user.is_staff %}
+            <h1>Create Category</h1>
+
+            <fieldset class="uk-fieldset">
+
+                <form method="POST">
+                    {% csrf_token %} <!-- CSRF is for data safety-->
+                    {{ form.as_p }}
+                    <button class="uk-button uk-button-default uk-button-small">Create</button>
+                </form>
+
+            </fieldset>
+        {% else %}
+            <h2> You do not have staff member priviledges to add a post.</h2>
+
+        {% endif %}
+
+
+    {% else %}
+        
+        <h1>You need to be logged in to add a post.</h1>
+
+    {% endif %}    
+
+{% endblock %}
