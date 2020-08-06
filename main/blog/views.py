@@ -32,13 +32,13 @@ class DeletePostView(DeleteView):
     template_name = "CRUD/Delete_Post.html"
     success_url = reverse_lazy('home')
 
-class CreateCategoryView(CreateView):
+class CreateCategoryView(CreateView):   
     model = Category
     fields = "__all__"
     template_name = 'Category/Create_Category.html'
 
 # Showcasing functional way, as oposed to class way, request refers to the part of the url "category/"
 def CategoryView(request, ctg):
-    category_posts = Post.objects.filter(category=ctg) # filter(field = what we pass in)
-    return render(request, "Category/Category.html", {'ctg': ctg, 'category_posts': category_posts}) # i return : category/ sports or w/e
-    #ctg.title()
+    category_posts = Post.objects.filter(category=ctg.replace('-', ' ')) # filter(field = what we pass in)
+    return render(request, "Category/Category.html", {'ctg': ctg.replace('-', ' '), 'category_posts': category_posts}) # i return : category/ sports or w/e
+    #.title().replace('-', ' ')

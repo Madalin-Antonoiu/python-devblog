@@ -27,7 +27,7 @@
                             <li data-category="{{ post.category }}"> <!-- The category dictates sorting-->
                                 <div class="uk-card uk-card-default uk-card-body uk-card-hover">
                                         <span class="uk-card-badge uk-label uk-background-secondary"> 
-                                            <a href="{% url 'category' post.category %}" style=" color:inherit;"> {{ post.category}}</a>
+                                            <a href="{% url 'category' post.category|slugify %}" style=" color:inherit;"> {{ post.category}}</a>
                                         </span> <!--Badge-->
                                     
                                         <h3 class="uk-card-title uk-margin-top">
