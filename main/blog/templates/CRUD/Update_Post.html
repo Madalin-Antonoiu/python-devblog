@@ -2,11 +2,9 @@
 
 {% block title%} Devblog - Edit Blog Post{% endblock %}
 
-
 {% block content %}
 
     {% if user.is_authenticated %}
-
 
         {% if user.is_staff %}
             <h1>Update Post</h1>
@@ -27,11 +25,8 @@
         {% endif %}
 
 
-
     {% else %}
-
         <h1>You need to be logged in to update a post.</h1>
-
     {% endif %}    
 
 {% endblock %}
