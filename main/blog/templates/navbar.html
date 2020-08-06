@@ -13,32 +13,6 @@
             </form>
         </div>
 
-         <!-- Categories Navbar -->
-        <nav class="uk-navbar-container" uk-navbar>
-            <div class="uk-navbar-left">
-        
-                <ul class="uk-navbar-nav">
-                    
-                    <li>
-                        <a href="#">Categories</a>
-                        <div class="uk-navbar-dropdown">
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-
-                                {% for category in category_menu %}
-                                    <li><a href="{% url 'category' category|slugify %}">{{ category }}</a></li> <!-- It only shows the categories with posts in them -->
-                                {% endfor %}
- 
-
-                            </ul>
-                        </div>
-                    </li>
-                  
-                </ul>
-        
-            </div>
-        </nav>
-
-
     </div>
 
     <div class="uk-navbar-right">
