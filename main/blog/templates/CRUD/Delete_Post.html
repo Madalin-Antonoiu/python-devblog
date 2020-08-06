@@ -5,19 +5,36 @@
 
 {% block content %}
 
-    <h1>Delete Post</h1>
-    <h3>Delete: {{ post.title }}</h3>
+
+{% if user.is_authenticated %}
+
+    {% if user.is_staff %}
+        <h1>Delete Post</h1>
+        <h3>Delete: {{ post.title }}</h3>
 
 
-    <fieldset class="uk-fieldset">
-    
-        <form method="POST">
-            {% csrf_token %} <!-- CSRF is for data safety-->
-            <strong>Are you sure?</strong><br>
-            <button class="uk-button uk-button-default uk-button-small">Delete Post</button>
-        </form>
+        <fieldset class="uk-fieldset">
 
-    </fieldset>
+            <form method="POST">
+                {% csrf_token %} <!-- CSRF is for data safety-->
+                <strong>Are you sure?</strong><br>
+                <button class="uk-button uk-button-default uk-button-small">Delete Post</button>
+            </form>
+
+        </fieldset>
+
+    {% else %}
+
+    <h2> You do not have staff member priviledges to delete a post.</h2>
+
+    {% endif %}   
+
+
+{% else %}
+
+    <h1>You need to be logged in to add a post.</h1>
+
+{% endif %}  
 
 
 

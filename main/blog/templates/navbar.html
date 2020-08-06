@@ -1,11 +1,9 @@
+<!-- This one does not extend the base.html, thus not having uI kit.js and css-->
+
 <nav class="uk-navbar-container uk-margin " uk-navbar>
     <div class="uk-navbar-left" >
 
         <a class="uk-navbar-item uk-logo" href="{% url 'home' %}">Devblog</a>
-
-        <div class="uk-navbar-item">
-            <a href="{% url 'create-post' %}">Create Post</a>
-        </div>
 
         <div class="uk-navbar-item">
             <form action="javascript:void(0)">
@@ -17,16 +15,41 @@
     </div>
 
     <div class="uk-navbar-right">
-        
-        <div class="uk-navbar-item">
-            <a href="#">Timezone</a>
-        </div>
 
-        <div class="uk-navbar-item">
-            <a href="#">Login</a>
-        </div>
-        <div class="uk-navbar-item">
-            <a href="#">Register</a>
-        </div>
+        {% if user.is_authenticated %}
+
+            {% load static %}
+            <img width="20" height="20" alt="" uk-img="data-src: {% static 'svg/user.svg' %}" uk-svg class="uk-margin-small-right">
+            {{ user.username }}
+            
+
+            {% if user.is_staff %}
+                <div class="uk-navbar-item">
+                    <a href="{% url 'create-post' %}">Create Post</a>
+                </div>
+            {% else %}
+
+
+            {% endif %}
+
+
+
+
+            <div class="uk-navbar-item">
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+
+         {% else %}
+
+            <div class="uk-navbar-item">
+                <a href="{% url 'register' %}">Register</a>
+            </div>
+
+            <div class="uk-navbar-item">
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+
+         {% endif %}
+
     </div>
 </nav>

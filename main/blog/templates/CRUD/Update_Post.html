@@ -5,19 +5,33 @@
 
 {% block content %}
 
-
- <h1>Update Post</h1>
-
-    <fieldset class="uk-fieldset">
-    
-        <form method="POST">
-            {% csrf_token %} <!-- CSRF is for data safety-->
-            {{ form.as_p }}
-            <button class="uk-button uk-button-default uk-button-small">Update</button>
-        </form>
-
-    </fieldset>
+    {% if user.is_authenticated %}
 
 
+        {% if user.is_staff %}
+            <h1>Update Post</h1>
+
+            <fieldset class="uk-fieldset">
+
+                <form method="POST">
+                    {% csrf_token %} <!-- CSRF is for data safety-->
+                    {{ form.as_p }}
+                    <button class="uk-button uk-button-default uk-button-small">Update</button>
+                </form>
+
+            </fieldset>
+        {% else %}
+
+            <h2> You do not have staff member priviledges to edit a post.</h2>
+
+        {% endif %}
+
+
+
+    {% else %}
+
+        <h1>You need to be logged in to update a post.</h1>
+
+    {% endif %}    
 
 {% endblock %}

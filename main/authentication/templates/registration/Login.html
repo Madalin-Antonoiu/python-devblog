@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title%} Devblog - Login {% endblock %}
+
+
+{% block content %}
+
+
+ <h1>Login</h1>
+
+    <fieldset class="uk-fieldset">
+    
+        <form method="POST">
+            {% csrf_token %} <!-- CSRF is for data safety-->
+            {{ form.as_p }}
+            <button class="uk-button uk-button-default uk-button-small">Login</button>
+        </form>
+
+    </fieldset>
+
+
+
+{% endblock %}

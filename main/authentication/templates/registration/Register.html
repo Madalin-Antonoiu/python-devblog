@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title%} Devblog - Register {% endblock %}
+
+
+{% block content %}
+
+
+ <h1>Register</h1>
+
+    <fieldset class="uk-fieldset">
+    
+        <form method="POST">
+            {% csrf_token %} <!-- CSRF is for data safety-->
+            {{ form.as_p }}
+            <button class="uk-button uk-button-default uk-button-small">Register</button>
+        </form>
+
+    </fieldset>
+
+
+
+{% endblock %}
