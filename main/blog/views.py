@@ -25,7 +25,7 @@ class UpdatePostView(UpdateView):
     model = Post
     form_class = PostForm #You can always mirror PostForm and create an Edit Form class with certain fields only
     template_name = "CRUD/Update_Post.html"
-    #fields = ['title', 'course', 'slug', 'body']
+    #fields = ['title', 'slug', 'body']
 
 class DeletePostView(DeleteView):
     model = Post

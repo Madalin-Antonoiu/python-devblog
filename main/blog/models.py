@@ -16,27 +16,14 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-class Course(models.Model):
-    title = models.CharField(max_length=255, unique=True)
-    category = models.ForeignKey(Category, on_delete = models.CASCADE, default="Undefined", unique=True) # Whenever a new Course is created, you must pick a category it relates to :)
-
-    class Meta:
-        verbose_name = "Course"
-        verbose_name_plural = "Courses"
-        ordering = ['title']
-
-    def __str__(self):
-        return self.title
-
 class Post(models.Model):
     author = models.ForeignKey(User, default="admin", on_delete = models.CASCADE) # foreign key comes from the User we created earlier
-    course = models.ForeignKey(Course, null=True, on_delete = models.CASCADE)
+    category =  models.CharField(max_length=255, default = "none")
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-   
 
     class Meta:
         verbose_name = "Post"
