@@ -37,3 +37,8 @@ class CreateCategoryView(CreateView):
     fields = "__all__"
     template_name = 'Category/Create_Category.html'
 
+# Showcasing functional way, as oposed to class way, request refers to the part of the url "category/"
+def CategoryView(request, ctg):
+    category_posts = Post.objects.filter(category=ctg) # filter(field = what we pass in)
+    return render(request, "Category/Category.html", {'ctg': ctg, 'category_posts': category_posts}) # i return : category/ sports or w/e
+    #ctg.title()
