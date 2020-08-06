@@ -14,8 +14,8 @@
                         <ul class="uk-subnav uk-subnav-pill">
                             <li class="uk-active" uk-filter-control><a href="#">All</a></li>
 
-                            {% for post in object_list %}
-                                <li uk-filter-control="[data-category={{ post.category }}]"><a href="#">{{ post.category }}</a></li> <!-- It only shows the categories with posts in them -->
+                            {% for category in category_menu %}
+                                <li uk-filter-control="[data-category={{ category|slugify }}]"><a href="#">{{ category }}</a></li> <!-- It only shows the categories with posts in them -->
                             {% endfor %}
                         </ul>
 
@@ -24,7 +24,7 @@
 
                             {% for post in object_list %}
                         
-                            <li data-category="{{ post.category }}"> <!-- The category dictates sorting-->
+                            <li data-category="{{ post.category|slugify }}"> <!-- The category dictates sorting-->
                                 <div class="uk-card uk-card-default uk-card-body uk-card-hover">
                                         <span class="uk-card-badge uk-label uk-background-secondary"> 
                                             <a href="{% url 'category' post.category|slugify %}" style=" color:inherit;"> {{ post.category}}</a>
@@ -94,5 +94,9 @@
                
             </div>
         </div>
+
+       
+
+
     {% endblock %}
 

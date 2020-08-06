@@ -10,6 +10,14 @@ class HomeView(ListView): #2. Then import this view into urls
     #ordering = ['-id'] - "-" means reverse order
     ordering = ['-updated_at']
 
+    #Returns a query list of our categories
+    def get_context_data(self, *args, **kwargs): # this is predefined function
+        # in here we want to query Categories model in DB and pull out the names
+        category_menu =  Category.objects.all()
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context["category_menu"] = category_menu
+        return context
+
 class CreatePostView(CreateView):
     model = Post
     form_class = PostForm
