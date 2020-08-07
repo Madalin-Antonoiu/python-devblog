@@ -27,6 +27,7 @@ class Post(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name='blog_posts')
 
     class Meta:
         verbose_name = "Post"
@@ -39,3 +40,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         # return reverse("read-post", args=(str(self.id)) ) # Returns to newly created post
         return reverse("home") # Returns home after POST
+
+    def total_likes(self):
+        return self.likes.count()

@@ -13,8 +13,8 @@
 
                         {% if user.id == post.author.id or user.is_superuser %}
                             <small> 
-                                <span class="uk-position-small"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span>
-                                <span class="uk-position-small"><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span>
+                                <span class="uk-position-small"><a href="{% url 'update-post'  post.pk %}">Edit</a></span>
+                                <span class="uk-position-small"><a href="{% url 'delete-post'  post.pk %}">Delete</a></span>
                             </small>
                         {% endif %}
 
@@ -24,15 +24,20 @@
                 
                 <p>{{post.body}}</p>
                 <div class="uk-grid-small uk-child-width-auto" uk-grid>
-                    <div>
-                        <a class="uk-button uk-button-text" href="#">Read more</a>
-                    </div>
+
                     <div>
                         <a class="uk-button uk-button-text" href="#">5 Comments</a>
                     </div>
+
                     <div>
                         <a class="uk-button uk-button-text" href="{% url 'home' %}">Back</a>
                     </div>
+
+                    <form action="{% url 'like-post' post.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="post_id", value="{{ post.id }}" class="uk-button-small uk-button-primary">Like</button>
+                        {{ total_likes }} likes
+                    </form>
                     
                 </div>
         

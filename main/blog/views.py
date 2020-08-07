@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Post, Category # this is from our models.py file
 from django.views.generic import ListView, CreateView, DetailView,  UpdateView, DeleteView
 from .forms import PostForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 
 class HomeView(ListView): #2. Then import this view into urls
     model = Post
@@ -29,6 +30,13 @@ class ReadPostView(DetailView): #2. Then import this view into urls
     model = Post
     template_name = "CRUD/Read_Post.html"
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ReadPostView, self).get_context_data(*args, **kwargs)
+        find = get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes = find.total_likes()
+        context["total_likes"] = total_likes # Now we can access this on Read_Post.html
+        return context
+
 class UpdatePostView(UpdateView):
     model = Post
     form_class = PostForm #You can always mirror PostForm and create an Edit Form class with certain fields only
@@ -50,3 +58,9 @@ def CategoryView(request, ctg):
     category_posts = Post.objects.filter(category=ctg.replace('-', ' ')) # filter(field = what we pass in)
     return render(request, "Category/Category.html", {'ctg': ctg.replace('-', ' '), 'category_posts': category_posts}) # i return : category/ sports or w/e
     #.title().replace('-', ' ')
+
+# We need to know which post, and then save it as a like(get_object_or_404)
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user) #saving a like from a user, not only a like ( "bob" likes this post)
+    return HttpResponseRedirect( reverse ('read-post', args=[str(pk)])) #redirect to the same page basically
