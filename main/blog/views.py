@@ -32,9 +32,16 @@ class ReadPostView(DetailView): #2. Then import this view into urls
 
     def get_context_data(self, *args, **kwargs):
         context = super(ReadPostView, self).get_context_data(*args, **kwargs)
-        find = get_object_or_404(Post, id=self.kwargs['pk'])
-        total_likes = find.total_likes()
+        obj = get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes = obj.total_likes()
+
+        liked = False
+        if obj.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         context["total_likes"] = total_likes # Now we can access this on Read_Post.html
+        context["liked"] = liked # Now we can use this on Read_Post.html
+
         return context
 
 class UpdatePostView(UpdateView):
@@ -62,5 +69,13 @@ def CategoryView(request, ctg):
 # We need to know which post, and then save it as a like(get_object_or_404)
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    post.likes.add(request.user) #saving a like from a user, not only a like ( "bob" likes this post)
+    liked = False
+
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked = False
+    else:
+        post.likes.add(request.user)
+        liked = True
+
     return HttpResponseRedirect( reverse ('read-post', args=[str(pk)])) #redirect to the same page basically

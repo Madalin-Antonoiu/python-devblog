@@ -33,11 +33,41 @@
                         <a class="uk-button uk-button-text" href="{% url 'home' %}">Back</a>
                     </div>
 
-                    <form action="{% url 'like-post' post.pk %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="post_id", value="{{ post.id }}" class="uk-button-small uk-button-primary">Like</button>
-                        {{ total_likes }} likes
-                    </form>
+
+                 
+                        
+                 
+
+                    
+
+                    {% if user.is_authenticated %}
+
+                        <form action="{% url 'like-post' post.pk %}" method="POST">
+                            {% csrf_token %}
+
+                            {% if liked %} <!-- If liked exists, that means it is true, that means already liked from current logged in user-->
+                                <button type="submit" name="post_id", value="{{ post.id }}" class="uk-button uk-button-small uk-button-secondary">Unlike</button>
+                            {% else %}
+                                <button type="submit" name="post_id", value="{{ post.id }}" class="uk-button uk-button-small uk-button-primary">Like</button>
+                            {% endif %}
+                            
+                            
+                        </form>
+
+                    {% else %}
+
+                        <small> 
+                            <a href="{% url 'login' %}">Login</a> to like
+                        </small>
+
+                       
+                    {% endif %}  
+                    <p class="">  {{ total_likes }} likes</p>
+                   
+                  
+
+
+
                     
                 </div>
         
