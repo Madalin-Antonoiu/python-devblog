@@ -7,20 +7,25 @@
     {% if user.is_authenticated %}
 
         {% if user.is_staff %}
-            <h1>Update Post</h1>
 
-            <fieldset class="uk-fieldset">
+            {% if user.id == post.author.id or user.is_superuser %}
+                <h1>Update Post</h1>
 
-                <form method="POST">
-                    {% csrf_token %} <!-- CSRF is for data safety-->
-                    {{ form.as_p }}
-                    <button class="uk-button uk-button-default uk-button-small">Update</button>
-                </form>
+                <fieldset class="uk-fieldset">
 
-            </fieldset>
-        {% else %}
+                    <form method="POST">
+                        {% csrf_token %} <!-- CSRF is for data safety-->
+                        {{ form.as_p }}
+                        <button class="uk-button uk-button-default uk-button-small">Update</button>
+                    </form>
 
-            <h2> You do not have staff member priviledges to edit a post.</h2>
+                </fieldset>
+            {% else %}
+            <h2> You are not the creator of the post, thus cannot edit it.</h2>
+            {% endif %}
+
+            {% else %}
+            <h2> You do not have staff member privileges to edit a post.</h2>
 
         {% endif %}
 

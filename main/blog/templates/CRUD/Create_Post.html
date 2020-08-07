@@ -19,6 +19,11 @@
                 </form>
 
             </fieldset>
+
+            <script>
+                document.getElementById("authorID").value = "{{ user.id }}";
+            </script>
+
         {% else %}
             <h2> You do not have staff member priviledges to add a post.</h2>
 

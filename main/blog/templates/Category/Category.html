@@ -36,7 +36,7 @@
                                 {% if user.is_authenticated %}
 
 
-                                    {% if user.is_staff %}
+                                    {% if user.id == post.author.id or user.is_superuser %}
                                         <small> 
                                             <span class="uk-position-small uk-position-bottom-right  uk-margin-large-right"><a href="{% url 'update-post' post.slug post.pk %}">Edit</a></span>
                                             <span class="uk-position-small uk-position-bottom-right uk-margin-medium-left "><a href="{% url 'delete-post' post.slug post.pk %}">Delete</a></span>

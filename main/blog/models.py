@@ -20,7 +20,7 @@ class Category(models.Model):
         return reverse("home") 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, default="admin", on_delete = models.CASCADE) # foreign key comes from the User we created earlier
+    author = models.ForeignKey(User, on_delete = models.CASCADE) # foreign key comes from the User we created earlier
     category =  models.CharField(max_length=255, default = "none")
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)

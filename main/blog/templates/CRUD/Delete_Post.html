@@ -6,7 +6,7 @@
 
     {% if user.is_authenticated %}
 
-        {% if user.is_staff %}
+        {% if user.id == post.author.id or user.is_superuser %}
             <h1>Delete Post</h1>
             <h3>Delete: {{ post.title }}</h3>
 
